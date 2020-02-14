@@ -7,6 +7,7 @@ import { createStackNavigator} from 'react-navigation-stack';
 import HomePageScreen from './pages/HomePageScreen';
 import DetailPageScreen from './pages/DetailPageScreen';
 import AboutPageScreen from './pages/AboutPageScreen';
+import MapPageScreen from './pages/MapPageScreen';
 import SidebarMenu from './components/SidebarMenu';
 class NavigationDrawerStructure extends Component {
   //Top Navigation Header with Donute Button
@@ -32,7 +33,7 @@ const HomePage_StackNavigator = createStackNavigator({
     screen: HomePageScreen,
     navigationOptions: ({ navigation }) => ({
       title: 'Demo Screen 1',
-      headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerLeft: () => <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: '#FF9800',
       },
@@ -47,7 +48,7 @@ const DetailPage_StackNavigator = createStackNavigator({
     screen: DetailPageScreen,
     navigationOptions: ({ navigation }) => ({
       title: 'Detail',
-      headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerLeft: () => <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: '#FF9800',
       },
@@ -68,7 +69,28 @@ const AboutPage_StackNavigator = createStackNavigator({
     screen: AboutPageScreen,
     navigationOptions: ({ navigation }) => ({
       title: 'About',
-      headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerLeft: () => <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#FF9800',
+      },
+      headerTintColor: '#fff',
+      headerRight: () => (
+        <Button
+          onPress={() => navigation.navigate('HomePageScreenStack',{ user_id: 2})}
+          title="< Back"
+          color="#f0f0f0"
+        />
+      ),
+    }),
+  },
+});
+const MapPage_StackNavigator = createStackNavigator({
+  //All the screen from the Screen1 will be indexed here
+  MapPageScreenStack: {
+    screen: MapPageScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Map',
+      headerLeft: () => <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: '#FF9800',
       },
@@ -91,7 +113,7 @@ const Drawer = createDrawerNavigator(
     NavScreen1: { screen: HomePage_StackNavigator },
     NavScreen2: { screen: DetailPage_StackNavigator },
     NavScreen3: { screen: AboutPage_StackNavigator },
-
+    NavScreen4: { screen: MapPage_StackNavigator },
   },
   {
     contentComponent: SidebarMenu,

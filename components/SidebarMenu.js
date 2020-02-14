@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Image, Text } from 'react-native';
 import { Icon } from 'react-native-elements';
+
+
  
 export default class SidebarMenu extends Component {
   constructor() {
@@ -15,6 +17,11 @@ export default class SidebarMenu extends Component {
           navOptionThumb: 'person',
           navOptionName: 'About',
           screenToNavigate: 'AboutPageScreenStack',
+        },
+        {
+          navOptionThumb: 'public',
+          navOptionName: 'Map',
+          screenToNavigate: 'MapPageScreenStack',
         }
     ];
     }
